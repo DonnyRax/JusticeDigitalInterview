@@ -1,5 +1,3 @@
-using JusticeDigitalApi.Interfaces;
-using JusticeDigitalApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,8 +7,6 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-builder.Services.AddSingleton<IPasswordService, PasswordService>();
 
 var app = builder.Build();
 

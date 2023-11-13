@@ -1,9 +1,8 @@
-using JusticeDigitalApi.Interfaces;
 using JusticeDigitalApi.Validation;
 
 namespace JusticeDigitalApi.Services;
 
-internal sealed class PasswordService : IPasswordService
+internal sealed class PasswordService
 { 
     public bool ValidatePassword(string password)
     {

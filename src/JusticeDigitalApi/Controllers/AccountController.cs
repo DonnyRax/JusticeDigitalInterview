@@ -1,4 +1,4 @@
-using JusticeDigitalApi.Interfaces;
+using JusticeDigitalApi.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JusticeDigitalApi.Controllers;
@@ -7,11 +7,11 @@ namespace JusticeDigitalApi.Controllers;
 [Route("api/[controller]")]
 public class AccountController : ControllerBase
 {
-    private readonly IPasswordService _passwordService;
+    private readonly PasswordService _passwordService;
 
-    public AccountController(IPasswordService passwordService)
+    public AccountController()
 	{
-        _passwordService = passwordService;
+        _passwordService = new PasswordService();
     }
 
     [HttpPost("ValidatePassword")]
@@ -19,6 +19,9 @@ public class AccountController : ControllerBase
     {
         var isValid = _passwordService.ValidatePassword(password);
 
-        return Ok(isValid);
+        if(!isValid)
+            return BadRequest("Validation failed.");
+
+        return Ok("Password is valid");
     }
 }
